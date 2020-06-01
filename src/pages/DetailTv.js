@@ -2,27 +2,26 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import * as movieDb from '../store/movieDb'
 
-class DetailMovie extends Component {
+class DetailTv extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movies: [],
+            tv: [],
             id: this.props.match.params.id,
-            companies: '',
         }
     }
 
     componentDidMount() {
-        this.getDetailMovie(this.state.id)
+        this.getDetailTv(this.state.id)
         console.log("detail", this.state.id);
     }
 
-    getDetailMovie(id){
-        axios.get(`${movieDb.BASE_URL}/movie/${id}?api_key=${movieDb.API_KEY}`)
+    getDetailTv(id){
+        axios.get(`${movieDb.BASE_URL}/tv/${id}?api_key=${movieDb.API_KEY}`)
             .then(response => {
-                this.setState({ movies: response.data })
-                console.log('movies', this.state.movies)
-                console.log('movies', this.state.movies.poster_path)
+                this.setState({ tv: response.data })
+                console.log('tv', this.state.tv)
+                console.log('tv', this.state.tv.poster_path)
             })
             .catch(error => {
                 console.log('error', error)
@@ -31,14 +30,9 @@ class DetailMovie extends Component {
 
     render(){
         const DATE_OPTIONS = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-        const numberFormat = (value) =>
-            new Intl.NumberFormat('en-IN', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(value);
         return(
             <div className="container-fluid" style={{marginTop: 60}}>
-                <h1>{this.state.movies.title}</h1>
+                <h1>{this.state.tv.name}</h1>
                 <div className="row">
                     <div className="col-md-12">
                         <div className="row">
@@ -53,23 +47,23 @@ class DetailMovie extends Component {
                                                             <p>Release Date</p>
                                                         </div>
                                                         <div className="col-md-9">
-                                                            <p>: {(new Date(this.state.movies.release_date)).toLocaleDateString('en-GB', DATE_OPTIONS)}</p>
+                                                            <p>: {(new Date(this.state.tv.first_air_date)).toLocaleDateString('en-GB', DATE_OPTIONS)}</p>
                                                         </div>
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-md-3">
-                                                            <p>Revenue</p>
+                                                            <p>Number of Seasons</p>
                                                         </div>
                                                         <div className="col-md-9">
-                                                            <p>: {numberFormat(this.state.movies.revenue)}</p>
+                                                            <p>: {this.state.tv.number_of_seasons}</p>
                                                         </div>
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-md-3">
-                                                            <p>Budget</p>
+                                                            <p>Number of Episodes</p>
                                                         </div>
                                                         <div className="col-md-9">
-                                                            <p>: {numberFormat(this.state.movies.budget)}</p>
+                                                            <p>: {this.state.tv.number_of_episodes}</p>
                                                         </div>
                                                     </div>
                                                     <div className="row">
@@ -77,7 +71,7 @@ class DetailMovie extends Component {
                                                             <p>Popularity</p>
                                                         </div>
                                                         <div className="col-md-9">
-                                                            <p>: {this.state.movies.popularity}</p>
+                                                            <p>: {this.state.tv.popularity}</p>
                                                         </div>
                                                     </div>
                                                     <div className="row">
@@ -85,17 +79,17 @@ class DetailMovie extends Component {
                                                             <p>Score</p>
                                                         </div>
                                                         <div className="col-md-9">
-                                                            <p>: {this.state.movies.vote_average}</p>
+                                                            <p>: {this.state.tv.vote_average}</p>
                                                         </div>
                                                     </div>
                                                     <h5>overview</h5>
-                                                    <p className="card-text text-justify">{this.state.movies.overview}</p>
+                                                    <p className="card-text text-justify">{this.state.tv.overview}</p>
                                                 </div>
                                             </div>
                                         </div>                                
                                         <div className="col-md-4">
                                             <div className="card">
-                                                <img src={`${movieDb.POSTER_PATH}${this.state.movies.poster_path}`} className="card-img-top img-rounded" alt="" />
+                                                <img src={`${movieDb.POSTER_PATH}${this.state.tv.poster_path}`} className="card-img-top img-rounded" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +101,6 @@ class DetailMovie extends Component {
             </div>
         )
     }
-
 }
 
-export default DetailMovie
+export default DetailTv

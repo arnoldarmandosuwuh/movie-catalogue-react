@@ -4,6 +4,7 @@ import './App.css'
 import Home from './pages/Home'
 import Movies from './pages/Movies'
 import DetailMovie from './pages/DetailMovie'
+import DetailTv from './pages/DetailTv'
 import TvShows from './pages/TvShows'
 
 class App extends Component {
@@ -24,7 +25,7 @@ class App extends Component {
             <Route path="/movies" component={Movies}></Route>
             <Route path="/movies-detail/:id" component={DetailMovie}></Route>
             <Route path="/tvshows" component={TvShows}></Route>
-            <Route path="/tvshows-detail/:id" component={TvShows}></Route>
+            <Route path="/tv-detail/:id" component={DetailTv}></Route>
           </div>
         </div>
       </Router>
