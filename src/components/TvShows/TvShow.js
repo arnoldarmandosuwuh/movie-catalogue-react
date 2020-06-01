@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import * as movieDb from '../../store/movieDb'
 
 const tvShow = (props) => (
@@ -10,6 +11,9 @@ const tvShow = (props) => (
                     <h5 className="card-title text-center">{props.tv.name}</h5>
                     <p>Release Date : {props.tv.first_air_date}</p>
                     <p className="card-text text-justify">{props.tv.overview}</p>
+                </div>
+                <div className="card-footer text-center">
+                    <Link className="btn btn-primary" to={"/tv-detail/"+props.tv.id}>See Details >></Link>
                 </div>
             </div>
         </div>

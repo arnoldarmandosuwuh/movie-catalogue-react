@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import * as movieDb from '../../store/movieDb'
 
 const movie = (props) => (
@@ -10,6 +11,9 @@ const movie = (props) => (
                     <h5 className="card-title text-center">{props.movie.title}</h5>
                     <p>Release Date : {props.movie.release_date}</p>
                     <p className="card-text text-justify">{props.movie.overview}</p>
+                </div>
+                <div className="card-footer text-center">
+                    <Link className="btn btn-primary" to={"/movies-detail/"+props.movie.id}>See Details >></Link>
                 </div>
             </div>
         </div>

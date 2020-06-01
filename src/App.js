@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Movies from './pages/Movies'
+import DetailMovie from './pages/DetailMovie'
 import TvShows from './pages/TvShows'
 
 class App extends Component {
@@ -18,10 +19,12 @@ class App extends Component {
                 <Link className="nav-item nav-link text-white" to="/tvshows">Tv Shows</Link>
             </div>
           </nav>
-          <div>
+          <div> 
             <Route path="/" exact component={Home}></Route>
             <Route path="/movies" component={Movies}></Route>
+            <Route path="/movies-detail/:id" component={DetailMovie}></Route>
             <Route path="/tvshows" component={TvShows}></Route>
+            <Route path="/tvshows-detail/:id" component={TvShows}></Route>
           </div>
         </div>
       </Router>

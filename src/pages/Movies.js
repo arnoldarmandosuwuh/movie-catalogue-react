@@ -28,7 +28,7 @@ class Movies extends Component {
 
     render(){
         return(
-            <div className="container">
+            <div className="container-fluid" style={{marginTop: 60}}>
                 <h1>Movies</h1>
                 <div className="row">
                     <div className="col-md-12">
